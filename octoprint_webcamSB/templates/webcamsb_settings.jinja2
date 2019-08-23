@@ -1,45 +1,43 @@
 <form>
-        <p>
-		<label class="control-label">Stream 1 (Leave this stream blank to use default webcam stream)</label>
-        <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcamSB.url">
-        </div>
-		<label class="control-label">Stream 2</label>
-        <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcamSB.url1">
-        </div>
-		<label class="control-label">Stream 3</label>
-        <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcamSB.url2">
-        </div>
-		<label class="control-label">Stream 4</label>
-        <div class="controls">
-            <input type="text" class="input-block-level" data-bind="value: settings.plugins.webcamSB.url3">
-        </div>		
-		</p>
-		<p>
-		<div>
-		<div class="wcsb_moreS">
-		<div>Allow to expand on click</div>
-		<select data-bind="value: settings.plugins.webcamSB.expand">
-			<option value="1">YES</option>
-			<option value="0">NO</option>
-		</select>
+	<div class="row-fluid">
+		<div class="span4 control-group" style="font-weight: bold;">{{ _('Name') }}</div>
+		<div class="span6 control-group" style="font-weight: bold;">{{ _('URL') }}</div>
+		<div class="span2 btn-group">
+			<button class="btn btn-mini btn-primary" data-bind="click: webcamsb_add_cam" title="Add Camera"><i class="fa fa-plus"></i></button>
 		</div>
-		<div class="wcsb_moreS">
-		<div>Default Stream</div>
-		<select data-bind="value: settings.plugins.webcamSB.defaultCam">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-		</select>
+	</div>
+	<div class="row-fluid" data-bind="foreach: settings.settings.plugins.webcamSB.urls">
+		<div class="row-fluid">
+			<div class="span4">
+				<div class="controls">
+					<input type="text" class="input input-block-level" data-bind="value: name" />
+				</div>
+			</div>
+			<div class="span6">
+				<div class="controls">
+					<input type="text" class="input input-block-level" data-bind="value: url" />
+				</div>
+			</div>
+			<div class="span2">
+				<button class="btn btn-mini btn-danger" data-bind="click: $parent.webcamsb_remove_cam" title="Remove Camera"><i class="fa fa-times"></i></button>
+			</div>
 		</div>
-		<div class="wcsb_moreS">
-		</div>
-		</div>
-		</p>
-		<p>
-		Don't forget to press "SAVE" when changing the stream URL and to refresh your browser with CTRL+F5.
-		</p>
+	</div>
+	<p>
+	<div>
+	<div class="wcsb_moreS">
+	<div>Allow to expand on click</div>
+	<select data-bind="value: settings.settings.plugins.webcamSB.expand">
+		<option value="1">YES</option>
+		<option value="0">NO</option>
+	</select>
+	</div>
+	<div class="wcsb_moreS">
+	<div>Default Stream</div>
+	<select data-bind="options: settings.settings.plugins.webcamSB.urls, optionsText: 'name', optionsValue: 'name', value: settings.settings.plugins.webcamSB.defaultCam"></select>
+	</div>
+	<div class="wcsb_moreS">
+	</div>
+	</div>
+	</p>
 </form>

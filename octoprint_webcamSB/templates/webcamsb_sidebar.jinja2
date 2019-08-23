@@ -1,4 +1,9 @@
 <div class="row-fluid">
-	<div id="webcamsb">
+	<div class="row-fluid" data-bind="visible: settings.settings.plugins.webcamSB.urls().length > 1" style="display: none;">
+		<select class="input-block-level" data-bind="options: settings.settings.plugins.webcamSB.urls, optionsText: 'name', optionsValue: 'name', value: settings.settings.plugins.webcamSB.defaultCam, event: {change: $root.wcsbChangeCam}"></select>
+	</div>
+	<div id="webcamsb" data-bind="if: current_cam_url() !== ''">
+		<p style="font-size:0.9em;text-align:center" data-bind="visible: current_cam_url().length < 1">Stream not set</p>
+		<img id="sidewebcam" width="100%" data-bind="click: wcsbPOC, visible: current_cam_url().length > 0, attr: {src: current_cam_url}">
 	</div>
 </div>
